@@ -1,7 +1,8 @@
 package com.ds04011.SpringTest.lifecycle;
 
+
 public class Freetalk {
-	
+	// 우클릭 --> source --> generate getter setter 하면 알아서 생성해줌.
 	private String title;
 	private String user;
 	private String content;
@@ -20,6 +21,11 @@ public class Freetalk {
 	}
 	public String getContent() {
 		return content;
+	}
+	
+	@Override
+	public String toString() {
+		return "제목 : " + title + " 유저 : " + user + " 내용 : " + content;
 	}
 	
 
