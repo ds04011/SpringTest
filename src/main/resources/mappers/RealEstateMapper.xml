@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.ds04011.SpringTest.realestate.repository.RealEstateRepository">
+ 	<select id="getRealEstateById" resultType ="com.ds04011.SpringTest.realestate.domain.RealEstate">
+ 		SELECT
+ 			`id`
+ 			, `realtorID`
+ 			, `address`
+ 			, `area`
+ 			, `type`
+ 			, `price`
+ 			, `rentPrice`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		From
+ 			`real_estate`
+ 		where
+ 			`id`=#{id}
+ 	</select>
+ 
+ 	<select id="getRealEstateByPriceLimit" 
+ 	resultType="com.ds04011.SpringTest.realestate.domain.RealEstate"
+ 	parameterType="int">
+ 		SELECT 
+ 			`id`
+ 			, `realtorID`
+ 			, `address`
+ 			, `area`
+ 			, `type`
+ 			, `price`
+ 			, `rentPrice`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		From
+ 			`real_estate`
+ 		where
+ 			`price` &lt; #{price}
+ 	
+ 	</select>
+ 
+ </mapper>
