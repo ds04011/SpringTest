@@ -7,7 +7,7 @@
  	<select id="getRealEstateById" resultType ="com.ds04011.SpringTest.realestate.domain.RealEstate">
  		SELECT
  			`id`
- 			, `realtorID`
+ 			, `realtorId`
  			, `address`
  			, `area`
  			, `type`
@@ -26,7 +26,7 @@
  	parameterType="int">
  		SELECT 
  			`id`
- 			, `realtorID`
+ 			, `realtorId`
  			, `address`
  			, `area`
  			, `type`
@@ -37,8 +37,77 @@
  		From
  			`real_estate`
  		where
- 			`price` &lt; #{price}
+ 			`rentPrice` &lt;= #{rentprice}
+ 		and
+ 			`type`="월세"
  	
  	</select>
  
+ 	<select id="getRealEstateByAreaPrice"
+ 	resultType="com.ds04011.SpringTest.realestate.domain.RealEstate"
+ 	parameterType="int">
+ 		SELECT
+ 			`id`
+ 			, `realtorId`
+ 			, `address`
+ 			, `area`
+ 			, `type`
+ 			, `price`
+ 			, `rentPrice`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		From
+ 			`real_estate`
+ 		where	
+ 			`area`  &gt;= #{area}
+ 		and
+ 			`price`  &lt;= #{price}
+ 			
+ 	</select>
+ 	
+ 	<insert id="insertRealEstate"
+ 	parameterType = "map">
+ 		Insert into `real_estate`
+ 			(
+	 			`realtorId`
+	 			, `address`
+	 			, `area`
+	 			, `type`
+	 			, `price`
+	 			, `rentPrice`
+ 			)
+ 		Value
+ 			(
+ 				#{realtorId}
+ 				, #{address}
+ 				, #{area}
+ 				, #{type}
+ 				, #{price}
+ 				, #{rentPrice}
+ 			)
+ 	
+ 	</insert>
+ 	
+ 	<insert id="insertRealEstateByEntity"
+ 	parameterType="com.ds04011.SpringTest.realestate.domain.RealEstate">
+ 		Insert into `real_estate`
+ 			(
+	 			`realtorId`
+	 			, `address`
+	 			, `area`
+	 			, `type`
+	 			, `price`
+	 			, `rentPrice`
+ 			)
+ 		Value
+ 			(
+ 				#{realtorId}
+ 				, #{address}
+ 				, #{area}
+ 				, #{type}
+ 				, #{price}
+ 				, #{rentPrice}
+ 			)
+ 	
+ 	</insert>
  </mapper>
