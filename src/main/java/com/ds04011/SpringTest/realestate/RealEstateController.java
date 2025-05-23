@@ -65,5 +65,19 @@ public class RealEstateController {
 		return "실행결과 : " + count;
 	}
 	
+	@RequestMapping("/update")
+	@ResponseBody
+	public int updateRealEstate(@RequestParam("id") int id, @RequestParam("type") String type,
+			@RequestParam("price") int price) {
+		int count = realEstateService.updateRealEstate(id, type, price); 
+		return count;
+	}
+	
+	@RequestMapping("/delete")
+	@ResponseBody
+	public int deleteRealEstate(@RequestParam("id") int id) {
+		int count = realEstateService.deleteRealEstate(id);
+		return count;
+	}
 	
 }
