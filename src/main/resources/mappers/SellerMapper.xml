@@ -5,7 +5,54 @@
  
 <mapper namespace="com.ds04011.SpringTest.seller.repository.SellerRepository">
 	
-	<select>
+	<select id="getSellers"
+	resultType="com.ds04011.SpringTest.seller.domain.Seller">
+		SELECT 
+			`id`
+			, `nickname`
+			, `temperature`
+			, `profileImage`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`seller`
+	
+	
+	</select>
+	
+	<select id="getSellerById"
+	resultType="com.ds04011.SpringTest.seller.domain.Seller"
+	parameterType="int">
+		SELECT 
+			`id`
+			, `nickname`
+			, `temperature`
+			, `profileImage`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`seller`
+		WHERE
+			`id`=#{id}
+	
+	</select>
+	
+	<select id="getLastSeller"
+	resultType = "com.ds04011.SpringTest.seller.domain.Seller">
+		SELECT 
+			`id`
+			, `nickname`
+			, `temperature`
+			, `profileImage`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`seller`
+		ORDER BY 
+			`id` 
+			desc
+		LIMIT 
+			1
 	
 	</select>
 	
