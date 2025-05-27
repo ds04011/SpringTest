@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<title>Insert title here</title>
+</head>
+<body>
+	
+		<table class="table text-center">
+			<tbody>
+				<tr>
+					<th>ID</th>
+					<td th:text="${result.id}"></td>
+				</tr>
+				<tr>
+					<th>상호명</th>
+					<td th:text="${result.office}"></td>
+				</tr>
+				<tr>
+					<th>전화번호</th>
+					<td th:text="${result.phoneNumber}"></td>
+				</tr>
+				<tr>
+					<th>주소</th>
+					<td th:text="${result.address}"></td>
+				</tr>
+				<tr>
+					<th>등급</th>
+					<td th:text="${result.grade}"></td>
+				</tr>
+		
+			</tbody>
+		</table>
+	
+	
+	
+	
+
+</body>
+</html>
