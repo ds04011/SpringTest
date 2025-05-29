@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+#wrap{
+
+	width : 1200px;
+	
+}
+
+section{
+	
+	
+	
+	
+}
+
+
+footer{
+	height:50px;
+}
+
+.text-sm{
+	font-size : small;
+	color: rgb(141, 141, 141);
+}
+.pas{
+	background-color: rgb(87, 124, 224);
+}

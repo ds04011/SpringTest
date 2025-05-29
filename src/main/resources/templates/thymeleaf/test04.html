@@ -26,15 +26,23 @@
 				<tr th:each="member, status : ${members}">
 					<td th:text="${status.count}"></td>
 					<td th:text="${member.name}"></td>
-					
-					
 					<td th:text="${#temporals.format(member.birth, 'yyyy년 M월 d일' )}"></td>
+					<td >
+						<span th:if="${#strings.startsWith(member.phoneNumber, '010')}" th:text="${member.phoneNumber}"></span>
+						<span th:unless="${#strings.startsWith(member.phoneNumber, '010')}" >유효하지 않은 전화번호</span>
+					</td>
+					<td th:text="${#strings.replace(member.nationality, '시대', '-') }"></td>
+					<td ><b th:text="${#strings.arraySplit(member.email, '@')[0]}">id</b>@<span th:text="${#strings.arraySplit(member.email, '@')[1]}"></span></td>
+					<td >
+						<span th:if="${#strings.length(member.introduce) >=15}" th:text="|${#strings.substring(member.introduce, 0, 14)}...|"></span>
+						<span th:unless="${#strings.length(member.introduce) >=15}" th:text="${member.introduce}"></span>
+					</td>
 					
+					<!-- 
+					<td th:text=${#strings.abbreviate(member.introduce, 18)}>  이건 알아서 ... 포함해서 18글자 넘어가면 잘라줌.
 					
-					<td th:text="${member.phoneNumber}"></td>
-					<td th:text="${member.nationality}"></td>
-					<td th:text="${member.email}"></td>
-					<td th:text="${member.introduce}"></td>
+					 -->
+					
 				</tr>
 			</tbody>
 		
