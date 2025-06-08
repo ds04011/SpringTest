@@ -53,14 +53,14 @@
 							<tr th:each="w1 : ${result}">
 								<td th:text="${#temporals.format(w1.date, 'yyyy년 M월 dd일')}">년월일</td>
 								
-								<th:block th:switch="${w1.weather}">
-									<td>
-										<span th:case="맑음" ><img src="http://marondal.com/material/images/dulumary/web/jstl/sunny.jpg"></span>
-										<span th:case="구름조금" ><img src="http://marondal.com/material/images/dulumary/web/jstl/partlyCloudy.jpg"></span>
-										<span th:case="흐림" ><img src="http://marondal.com/material/images/dulumary/web/jstl/cloudy.jpg"></span>
-										<span th:case="비" ><img src="http://marondal.com/material/images/dulumary/web/jstl/rainy.jpg"></span>
-									</td>
-								</th:block>
+								
+								<td th:switch="${w1.weather}">
+									<img th:case="맑음" src="http://marondal.com/material/images/dulumary/web/jstl/sunny.jpg">
+									<img th:case="구름조금" src="http://marondal.com/material/images/dulumary/web/jstl/partlyCloudy.jpg">
+									<img th:case="흐림" src="http://marondal.com/material/images/dulumary/web/jstl/cloudy.jpg">
+									<img th:case="비" src="http://marondal.com/material/images/dulumary/web/jstl/rainy.jpg">
+								</td>
+								
 								
 								<td th:text="|${w1.temperatures}°C|">21도</td>
 								<td th:text="|${w1.precipitation}mm|">80mm</td>

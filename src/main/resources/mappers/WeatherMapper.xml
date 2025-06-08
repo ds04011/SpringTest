@@ -21,4 +21,33 @@
  			`weatherhistory`
  	
  	</select>
+ 	
+ 	<insert id="addWeather"
+ 	parameterType="com.ds04011.SpringTest.weather.domain.Weather">
+ 		INSERT INTO `weatherhistory`
+ 		(
+ 			`date`
+ 			, `weather`
+ 			, `temperatures`
+ 			, `precipitation`
+ 			, `microDust`
+ 			, `windSpeed`
+ 			
+ 		)
+ 		Values
+ 		(
+ 			#{date}
+ 			, #{weather}
+ 			, #{temperatures}
+ 			, #{precipitation}
+ 			, #{microDust}
+ 			, #{windSpeed}
+ 		)
+ 		
+ 	
+ 	
+ 	</insert>
+ 	
+ 	
+ 	
  </mapper>

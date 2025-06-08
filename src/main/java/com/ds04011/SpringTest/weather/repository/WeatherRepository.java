@@ -10,4 +10,6 @@ import com.ds04011.SpringTest.weather.domain.Weather;
 public interface WeatherRepository {
 
 	public List<Weather> getWeatherList();
+	
+	public int addWeather(Weather weather);
 }

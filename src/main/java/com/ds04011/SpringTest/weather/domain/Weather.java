@@ -3,9 +3,12 @@ package com.ds04011.SpringTest.weather.domain;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Weather {
 	private int id;
-	private LocalDate date;
+	@DateTimeFormat(pattern="yyyy년 M월 d일") private LocalDate date;
+	
 	private String weather;
 	private double temperatures;
 	private double precipitation;

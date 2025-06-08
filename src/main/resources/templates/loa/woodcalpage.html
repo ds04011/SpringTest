@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<!-- 이걸 form 으로 서버로 보내서 연산을 마친 후 최적화 페이지를 보여줄건지, 
+	아니면 제이쿼리를 이용해서 사이트에서 확인 누르면 실시간으로 계산을 해줄건지, 
+	둘다 구현해보는게 연습에는 좋겠다. 
+	
+	 1. 균형맞춰서 제작 하기, 
+	 2. 거래소 시세에 맞게 방향 제시
+	 
+	 -->
+	<div class="m-4 ">
+		<form method = "post" action="/loa/woodcalresult">
+		<div class="d-flex">
+			<label>목재</label><input type="text" class="from-control m-1" name="t1" id="t1">
+			<label>부드러운 목재</label><input type="text" class="from-control m-1" name="t2" id="t2">
+			<label>튼튼한 목재</label><input type="text" class="from-control m-1" name="t3" id="t3">
+			<label>아비도스 목재</label><input type="text" class="from-control m-1" name="t4" id="t4">
+		</div>
+		<button type="submit" class="btn btn-primary">확인(서버)</button>
+		<button type = "button" class="btn btn-success" id="checkBtn">확인(웹)</button>
+		</form>
+	</div>
+	
+	<!--  결과를 문자열로? 최적화된 결과를 어떻게 보여줄 지 생각을 더 해봐야 할듯.  -->
+	<div>
+		최적화 : <span id="resultSpan"></span>
+	</div>
+	
+	
+	
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script>
+		$("#checkBtn").on("click", function(){
+			let t1 = $("#t1").val();
+			let t2 = $("#t2").val();
+			let t3 = $("#t3").val();
+			let t4 = $("#t4").val();
+			
+			$.ajax({
+				type:"post"
+				, url:"/loa/loawoodcal" // 여기로
+				, data:{"t1":t1, "t2":t2, "t3":t3, "t4":t4} // 이 변수들 담아서 보내, 
+				, success: function(response) { //응답이 오면 리턴이 response 에 담겨져있음
+					
+					$("#resultSpan").text(response.result);
+				} 
+				
+			});
+			
+		});
+		
+	
+	</script>
+	
+
+</body>
+</html>

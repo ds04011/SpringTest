@@ -18,4 +18,9 @@ public class WeatherService {
 		
 		return weatherRepository.getWeatherList();
 	}
+	
+	public int addWeather(Weather weather) {
+		
+		return weatherRepository.addWeather(weather);
+	}
 }
