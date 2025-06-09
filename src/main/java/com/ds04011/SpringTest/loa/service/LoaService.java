@@ -23,13 +23,42 @@ public class LoaService {
 		 *  그러니까, 모든 재료를 일반목재의 비율로 생각하고, 그 비율만 맞추는걸로 해보자 
 		 *  
 		  
+		  1 : 2
+		  1 : 10
+		  1 : 10 
+		  
 		*/
+		
+		
+		
+		
+		
+		
 		int t3Unit = t3 / 5;	// 튼목 거래단위 
-		t1 = t1 + t3Unit * 50; 
+		//t1 = t1 + t3Unit * 50;	// 목재 환산
+		
+		int t1count= t1 / 86 ;
+		int t2count = t2 / 45 ;
+		int t4count = t4 / 33 ;
+		
+		int firstProd = maxTriple(t1count, t2count, t4count);
+		
+		t1 = t1 - 86 * firstProd;
+		t2 = t2 - 45 * firstProd;
+		t4 = t4 - 33 * firstProd;
+		
 				
 		
 		
 		
 		return "";
+	}
+	
+	
+	public static int maxTriple(int a, int b, int c) {
+		
+		int max = a > b ? a : b;
+		max = max > c ? max : c;
+		return max;
 	}
 }
