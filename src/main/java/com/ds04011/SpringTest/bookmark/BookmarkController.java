@@ -1,5 +1,9 @@
 package com.ds04011.SpringTest.bookmark;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +24,8 @@ public class BookmarkController {
 	@GetMapping("/bookmark/list")
 	public String bookmarkList(Model model) {
 		
-		
+		List<Bookmark> list1 =  bookmarkService.getBookmarkList();
+		model.addAttribute("result", list1);
 		
 		return "bookmark/list";
 	}
@@ -34,7 +39,7 @@ public class BookmarkController {
 	
 	@ResponseBody
 	@PostMapping("/bookmark/add")
-	public String bookmarkAdd(@RequestParam("name") String name
+	public Map<String, String> bookmarkAdd(@RequestParam("name") String name
 			, @RequestParam("url") String url) {
 		
 		
@@ -43,11 +48,30 @@ public class BookmarkController {
 		bookmark.setUrl(url);
 		
 		int count = bookmarkService.addBookmark(bookmark);
+		String result = "fail";
+		if(count == 1) {
+			result="success";
+		}
+		
+		Map<String, String> map1 = new HashMap<>();
+		map1.put("result", result);
+		
+		return map1;
 		
 		
+	}
+	
+	@ResponseBody
+	@GetMapping("/bookmark-url-duplicate")
+	public Map<String, Boolean> isUrlDuplicate(@RequestParam("url") String url) {
 		
-		return "redirect:/bookmark/list";
+		// 중복 여부가 리턴됨, 
+		boolean dup = bookmarkService.isUrlDuplicate(url);
 		
+		Map<String, Boolean> map1 = new HashMap<>();
+		map1.put("isDuplicate", dup);
+		
+		return map1;
 		
 	}
 	

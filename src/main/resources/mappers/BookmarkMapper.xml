@@ -4,7 +4,7 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  <mapper namespace="com.ds04011.SpringTest.bookmark.repository.BookmarkRepository">
- 	<insert id="addBookmark"
+ 	<insert id="InsertBookmark"
  	parameterType="com.ds04011.SpringTest.bookmark.domain.Bookmark">
  		INSERT INTO `bookmark`
  		(
@@ -19,4 +19,27 @@
  	
  	</insert>
  
+ 	<select id="selectAllBookmark"
+ 	resultType="com.ds04011.SpringTest.bookmark.domain.Bookmark">
+ 		SELECT 
+ 			`id`
+ 			, `name`
+ 			, `url`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`bookmark`
+ 			
+ 	
+ 	</select>
+ 	
+ 	<select id="selectCountByUrl"
+ 	parameterType="String"
+ 	resultType="int">
+ 		Select count(*) FROM 
+ 			`bookmark`
+ 		WHERE
+ 			`url` = #{url}
+ 	
+ 	</select>
  </mapper>
