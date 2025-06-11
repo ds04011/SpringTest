@@ -37,4 +37,10 @@ public class BookmarkService {
 		return is;
 		
 	}
+	
+	public int deleteBookmark(int id) {
+		
+		int count = bookmarkRepository.deleteBookmark(id);
+		return count;
+	}
 }

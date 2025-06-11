@@ -16,4 +16,6 @@ public interface BookmarkRepository {
 	
 	// 전달받은 url 이 포함된 행의 개수 조회 인건데, 카운트 값이 리턴될꺼야 , 
 	public int selectCountByUrl(@Param("url") String url);
+	
+	public int deleteBookmark(@Param("id") int id);
 }

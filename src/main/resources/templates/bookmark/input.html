@@ -47,6 +47,7 @@
 						//중복됨 사용불능
 						//alert("dd");
 						$("#dupTrue").show();
+						$("#dupFalse").hide();
 						
 					} else {
 						//사용가능
@@ -54,7 +55,7 @@
 						
 						dupCheck = true;
 						$("#dupFalse").show();
-						
+						$("#dupTrue").hide();
 						
 					}
 				}
@@ -70,7 +71,7 @@
 			let name = $("#nameInput").val();
 			let url = $("#urlInput").val();
 			
-			if(dupCheck){
+			if(!dupCheck){
 				alert("url 중복확인을 해주세요!");
 				return;
 			}

@@ -25,6 +25,8 @@
 					<td th:text="${status.count}">1</td>
 					<td th:text="${bookmark.name}">마론달</td>
 					<td ><a th:href="${bookmark.url}" th:text="${bookmark.url}"></a></td>
+					<td><button class="btn btn-danger btn-sm deleteBtn" th:value = "${bookmark.id}">삭제</button></td>
+					
 				</tr>
 				
 			</tbody>
@@ -32,7 +34,44 @@
 	
 	</div>
 	
-	
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script>
+		// 어떻게 그 삭제 버튼의 id 값을 가지고 오지?
+		// 반복문이라 이게 특정 id 값을 봐도, 별 의미가 없는거같은데 id 는 고유의 태그라 중복되면 기능을 잃음 	
+		// 여러태그에 같은 값을 부여할 수 있는 태그를 사용해야함 = 클래스
+		
+		
+		$(".deleteBtn").on("click", function(){
+			
+			// this 라는 클래스로 객체를 얻어오면, 이벤트가 발생한 그 객체만을 가져옴
+			// 그래서 그 버튼에 id 값을 묻어놓으면, 가져올 수가 있게 되는것.
+			// value 로 값을 부여한다? --> 타임리프 기반으로 값 부여 th:value = "${#bookmark.id}"
+			let id = $(this).val();
+			
+			$.ajax({
+					type:"get"
+					, url:"/bookmark/delete"
+					, data:{"id":id}
+					, success:function(response){
+						if(response.result){
+							alert("삭제가 완료되었습니다.");
+							location.reload();
+						} else{
+							alert("삭제 과정중 오류가 발생하였습니다.");
+						} 
+						
+						
+					} 
+					, error:function(){
+						alert("삭제 에러 발생"); // 이거 찍히고 삭제는 정상작동하는데?
+						
+					}
+				
+				
+			});
+			
+		});
+	</script>
 	
 
 </body>

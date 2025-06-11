@@ -1,0 +1,50 @@
+@charset "UTF-8";#wrap{
+    height: 1000px;
+    width: 1200px;
+    margin: 0 auto;
+    
+}
+header{
+    height: 100px;
+    
+}
+nav{
+    height: 50px;
+    background-color: rgb(236, 152, 55);
+}
+section{
+    height: 650px;
+}
+footer{
+    height: 50px;
+    
+}
+.copy{
+    color: rgb(161, 161, 161);
+}
+
+.content{
+    height: 246px;
+}
+.main-banner{
+    
+}
+.tong1{
+    
+    background-color: rgb(163, 70, 33);
+}
+.tong2{
+    background-color: rgb(187, 93, 55);
+}
+.tong3{
+    
+    background-color: rgb(163, 70, 33);
+}
+.resv{
+    font-size: 35px;
+}
+.reserv{
+	width:800px;
+}
+
+

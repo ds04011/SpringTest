@@ -75,6 +75,24 @@ public class BookmarkController {
 		
 	}
 	
+	@ResponseBody
+	@GetMapping("/bookmark/delete")
+	public Map<String, Boolean> delete(@RequestParam("id") int id) {
+		
+		int count = bookmarkService.deleteBookmark(id);
+		
+		boolean deleteSuccess = false;
+		if(count == 1) {
+			deleteSuccess = true;
+		}
+		
+		Map<String, Boolean> map1 = new HashMap<>();
+		map1.put("result", deleteSuccess);
+		
+		
+		return map1;
+	}
+	
 	
 	
 }
