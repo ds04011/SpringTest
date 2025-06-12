@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.ds04011.SpringTest.reservation.repository.TongRepository">
+ 
+ 	<select id="selectAllBooking"
+ 	resultType="com.ds04011.SpringTest.reservation.domain.Tong">
+ 		select
+ 			`id`
+ 			, `name`
+ 			, `headcount`
+ 			, `day`
+ 			, `date`
+ 			, `phoneNumber`
+ 			, `state`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`booking`
+ 	
+ 	</select>
+ 	<insert id="insertBooking"
+ 	parameterType="com.ds04011.SpringTest.reservation.domain.Tong">
+ 		INSERT INTO 
+ 			`booking`
+ 			(
+ 				`name`
+ 				, `headcount`
+ 				, `day`
+ 				, `date`
+ 				, `phoneNumber`
+ 				, `state`
+ 				
+ 			)
+ 		value
+ 			(
+ 				#{name}
+ 				, #{headcount}
+ 				, #{day}
+ 				, #{date}
+ 				, #{phoneNumber}
+ 				, #{state}
+ 			)
+ 			
+ 			
+ 	
+ 	</insert>
+ 
+ 	<delete id="deleteBooking"
+ 	parameterType="int">
+ 		DELETE FROM 
+ 			`booking`
+ 		WHERE
+ 			`id` = #{id}
+ 	</delete>
+ 	
+ 	<select id="selectByNameandPhoneNumber"
+ 	parameterType="Map"
+ 	resultType = "com.ds04011.SpringTest.reservation.domain.Tong">
+ 		select
+ 			`id`
+ 			, `name`
+ 			, `headcount`
+ 			, `day`
+ 			, `date`
+ 			, `phoneNumber`
+ 			, `state`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`booking`
+ 		WHERE 
+ 			`name` = #{name} 
+ 			and
+ 			`phoneNumber` = #{phoneNumber} 
+ 	
+ 	</select>
+ 
+ </mapper>

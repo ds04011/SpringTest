@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -18,18 +18,47 @@
 
             <nav class=" ">
                 <ul class="nav nav-fill font-weight-bold pt-1">
-                    <li class="nav-item"><a href="#" class="nav-link text-white">펜션소개</a></li>
+                    <li class="nav-item"><a href="/tong/mainpage" class="nav-link text-white">펜션소개</a></li>
                     <li class="nav-item"><a href="#" class="nav-link text-white">객실보기</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-white">예약안내</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-white">커뮤니티</a></li>
+                    <li class="nav-item"><a href="/tong/reservationpage" class="nav-link text-white">예약하기</a></li>
+                    <li class="nav-item"><a href="/tong/reservationlist" class="nav-link text-white">예약목록</a></li>
                 </ul>
             </nav>
 
             <section class = "">
-
+				
+					<h3 class="text-center mt-3">예약 목록 보기</h3>
+					<table class="table mt-4">
+						<thead>
+							<tr >
+								<th >이름</th>
+								<th >예약날짜</th>
+								<th >숙박일수</th>
+								<th >숙박인원</th>
+								<th >전화번호</th>
+								<th >예약상태</th>
+							</tr>
+						</thead>
+						<tbody>
+								<tr th:each="res : ${result}">
+								<td th:text="${res.name}">인규</td>
+								<td th:text="${#temporals.format(res.date, 'yyyy년 M월 d일' )}">날짜</td>
+								<td th:text="${res.day}">2일</td>
+								<td th:text="${res.headcount}">4명</td>
+								<td th:text="${res.phoneNumber}">010</td>
+								
+								<th:block th:switch=${res.state}>
+									<td th:case="대기중" th:text="${res.state}" class="text-info">대기중</td>
+									<td th:case="확정" th:text="${res.state}" class="text-success">대기중</td>
+								</th:block>
+								<td><button class="btn btn-danger btn-sm delBtn" th:data-booking-id="${res.id}  th:value = "${res.id}">삭제</button></td>
+							</tr>
+						</tbody>
+					</table>
+				
+				
+				
                 
-                
-
             </section>
 
             <footer class="d-flex ">
@@ -45,24 +74,37 @@
     </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
     <script>
-    
+		$(".delBtn").on("click", function(){
+			
+			let id = $(this).val();
+			
+			let id2 = $(this).data("booking-id");   // 이렇게 해서 버튼에 값을 부여하는 방법도 있다.
+												// val 값을 주지 못하는 태그의 경우에 하는 방법. 
+			
+			
+			
+			$.ajax({
+				type:"get"
+				, url:"/tong/delete"
+				, data:{"id":id}
+				, success:function(response){
+					if(response.result=="success"){
+						alert("삭제 성공");
+						location.reload();
+					} else{
+						alert("삭제 진행중 에러 발생 ");  // 통신은 성공했는데 기능 실패 
+					}
+				}
+				, error:function(){
+					alert("통신 진행중 에러 발생 "); // 통신 실패 
+				}
+				
+			});
+			
+		});    
     
     
     </script>
