@@ -101,17 +101,29 @@ public class TongController {
 		
 		Tong t1 = tongService.checkReservation(name, phoneNumber);
 		
-		Map<String, Object> map1 = new HashMap<>();
-		map1.put("id", t1.getId());
-		map1.put("name", t1.getName());
-		map1.put("date", t1.getDate());
-		map1.put("day", t1.getDay());
-		map1.put("headcount", t1.getHeadcount());
-		map1.put("state",  t1.getState());
-		
-		return map1;
 		
 		
+//		Map<String, Object> map1 = new HashMap<>();
+//		map1.put("id", t1.getId());
+//		map1.put("name", t1.getName());
+//		map1.put("date", t1.getDate());
+//		map1.put("day", t1.getDay());
+//		map1.put("headcount", t1.getHeadcount());
+//		map1.put("state",  t1.getState());
+		
+		//  {"result":success(fail), "data":tong}
+		// 이렇게 리턴 하는게 맞아. js 에서 정보 유무를 파악 후, 출력을 하는 조건문으로 가는게 맞다. 
+		
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		if(t1!=null) {
+			resultMap.put("result", "success");
+			resultMap.put("data", t1);
+		} else {
+			resultMap.put("result",  "fail");
+		}
+		// 이렇듯 API 의 응답은 항상 확실하게 정보를 담고 있는게 중요하다, 리턴 타입이 조금 복잡해질지라도.
+		return resultMap;
 	}
 	
 	
