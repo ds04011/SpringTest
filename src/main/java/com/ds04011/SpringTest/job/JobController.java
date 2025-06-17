@@ -78,6 +78,8 @@ public class JobController {
 	public List<Job> findbyDeadlineSalaryType(){
 		
 		List<Job> jobList = jobService.findByDeadlistSalaryTypeDesc("2026-04-10", 8100, "정규직");
+		//                                             (LocalDate.Of(2026, 4, 10)) 이렇게 로컬데이트 객체 생성 가능. 
+		
 		return jobList;
 	}
 	
